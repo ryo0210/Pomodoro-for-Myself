@@ -1,0 +1,6 @@
+framework module Pods_Pomodoro_for_Myself {
+  umbrella header "Pods-Pomodoro for Myself-umbrella.h"
+
+  export *
+  module * { export * }
+}
