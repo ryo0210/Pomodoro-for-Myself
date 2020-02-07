@@ -3,7 +3,7 @@
 	archiveVersion = 1;
 	classes = {
 	};
-	objectVersion = 50;
+	objectVersion = 51;
 	objects = {
 
 /* Begin PBXBuildFile section */
@@ -27,6 +27,9 @@
 		2A315C3723EBE6C10088D8FD /* MontserratAlternates-SemiBold.otf in Resources */ = {isa = PBXBuildFile; fileRef = 2A315C2523EBE6C10088D8FD /* MontserratAlternates-SemiBold.otf */; };
 		2A315C3823EBE6C10088D8FD /* Montserrat-Medium.otf in Resources */ = {isa = PBXBuildFile; fileRef = 2A315C2623EBE6C10088D8FD /* Montserrat-Medium.otf */; };
 		2A315C3923EBE6C10088D8FD /* Montserrat-SemiBold.otf in Resources */ = {isa = PBXBuildFile; fileRef = 2A315C2723EBE6C10088D8FD /* Montserrat-SemiBold.otf */; };
+		2A315C3F23ED59C00088D8FD /* GetData.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2A315C3E23ED59C00088D8FD /* GetData.swift */; };
+		2A315C4123ED65680088D8FD /* Data.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2A315C4023ED65680088D8FD /* Data.swift */; };
+		2A315C4323ED9F650088D8FD /* GetColor.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2A315C4223ED9F650088D8FD /* GetColor.swift */; };
 		2A74CE5023E9C1DA00E88593 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2A74CE4F23E9C1DA00E88593 /* AppDelegate.swift */; };
 		2A74CE5223E9C1DA00E88593 /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2A74CE5123E9C1DA00E88593 /* SceneDelegate.swift */; };
 		2A74CE5423E9C1DA00E88593 /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2A74CE5323E9C1DA00E88593 /* ViewController.swift */; };
@@ -59,6 +62,9 @@
 		2A315C2523EBE6C10088D8FD /* MontserratAlternates-SemiBold.otf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "MontserratAlternates-SemiBold.otf"; sourceTree = "<group>"; };
 		2A315C2623EBE6C10088D8FD /* Montserrat-Medium.otf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "Montserrat-Medium.otf"; sourceTree = "<group>"; };
 		2A315C2723EBE6C10088D8FD /* Montserrat-SemiBold.otf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "Montserrat-SemiBold.otf"; sourceTree = "<group>"; };
+		2A315C3E23ED59C00088D8FD /* GetData.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GetData.swift; sourceTree = "<group>"; };
+		2A315C4023ED65680088D8FD /* Data.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Data.swift; sourceTree = "<group>"; };
+		2A315C4223ED9F650088D8FD /* GetColor.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GetColor.swift; sourceTree = "<group>"; };
 		2A74CE4C23E9C1DA00E88593 /* Pomodoro for Myself.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "Pomodoro for Myself.app"; sourceTree = BUILT_PRODUCTS_DIR; };
 		2A74CE4F23E9C1DA00E88593 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		2A74CE5123E9C1DA00E88593 /* SceneDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SceneDelegate.swift; sourceTree = "<group>"; };
@@ -84,7 +90,7 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
-		2A315C1523EBE6360088D8FD /* font */ = {
+		2A315C1523EBE6360088D8FD /* Font */ = {
 			isa = PBXGroup;
 			children = (
 				2A315C1623EBE6BF0088D8FD /* Montserrat-Black.otf */,
@@ -106,13 +112,51 @@
 				2A315C2523EBE6C10088D8FD /* MontserratAlternates-SemiBold.otf */,
 				2A315C1923EBE6C00088D8FD /* MontserratAlternates-Thin.otf */,
 			);
-			path = font;
+			path = Font;
+			sourceTree = "<group>";
+		};
+		2A315C3A23ED4F400088D8FD /* Models */ = {
+			isa = PBXGroup;
+			children = (
+				2A315C3E23ED59C00088D8FD /* GetData.swift */,
+				2A315C4023ED65680088D8FD /* Data.swift */,
+				2A315C4223ED9F650088D8FD /* GetColor.swift */,
+			);
+			path = Models;
+			sourceTree = "<group>";
+		};
+		2A315C3B23ED4F510088D8FD /* Controllers */ = {
+			isa = PBXGroup;
+			children = (
+				2A74CE5323E9C1DA00E88593 /* ViewController.swift */,
+			);
+			path = Controllers;
+			sourceTree = "<group>";
+		};
+		2A315C3C23ED4F5F0088D8FD /* Views */ = {
+			isa = PBXGroup;
+			children = (
+				2A74CE5523E9C1DA00E88593 /* Main.storyboard */,
+			);
+			path = Views;
+			sourceTree = "<group>";
+		};
+		2A315C3D23ED50BB0088D8FD /* Sound */ = {
+			isa = PBXGroup;
+			children = (
+				2A7D3D0323EA45F900E87FDB /* alarm_sound.mp3 */,
+				2A315C1123EB0F0A0088D8FD /* callbell2.mp3 */,
+				2A315C1023EB0F0A0088D8FD /* callendbell.mp3 */,
+			);
+			path = Sound;
 			sourceTree = "<group>";
 		};
 		2A74CE4323E9C1D900E88593 = {
 			isa = PBXGroup;
 			children = (
 				2A74CE4E23E9C1DA00E88593 /* Pomodoro for Myself */,
+				2A315C3D23ED50BB0088D8FD /* Sound */,
+				2A315C1523EBE6360088D8FD /* Font */,
 				2A74CE4D23E9C1DA00E88593 /* Products */,
 				CFCD18D65AAD731E3EE9FABB /* Pods */,
 				540EBAFF1CA56F774E51BC95 /* Frameworks */,
@@ -130,14 +174,11 @@
 		2A74CE4E23E9C1DA00E88593 /* Pomodoro for Myself */ = {
 			isa = PBXGroup;
 			children = (
-				2A315C1523EBE6360088D8FD /* font */,
 				2A74CE4F23E9C1DA00E88593 /* AppDelegate.swift */,
 				2A74CE5123E9C1DA00E88593 /* SceneDelegate.swift */,
-				2A74CE5323E9C1DA00E88593 /* ViewController.swift */,
-				2A315C1123EB0F0A0088D8FD /* callbell2.mp3 */,
-				2A315C1023EB0F0A0088D8FD /* callendbell.mp3 */,
-				2A74CE5523E9C1DA00E88593 /* Main.storyboard */,
-				2A7D3D0323EA45F900E87FDB /* alarm_sound.mp3 */,
+				2A315C3A23ED4F400088D8FD /* Models */,
+				2A315C3C23ED4F5F0088D8FD /* Views */,
+				2A315C3B23ED4F510088D8FD /* Controllers */,
 				2A74CE5823E9C1DF00E88593 /* Assets.xcassets */,
 				2A74CE5A23E9C1DF00E88593 /* LaunchScreen.storyboard */,
 				2A74CE5D23E9C1DF00E88593 /* Info.plist */,
@@ -159,7 +200,6 @@
 				9A68828FC7531C4BE49314D9 /* Pods-Pomodoro for Myself.debug.xcconfig */,
 				10C640561250C02BCCC4779E /* Pods-Pomodoro for Myself.release.xcconfig */,
 			);
-			name = Pods;
 			path = Pods;
 			sourceTree = "<group>";
 		};
@@ -299,6 +339,9 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				2A315C3F23ED59C00088D8FD /* GetData.swift in Sources */,
+				2A315C4123ED65680088D8FD /* Data.swift in Sources */,
+				2A315C4323ED9F650088D8FD /* GetColor.swift in Sources */,
 				2A74CE5423E9C1DA00E88593 /* ViewController.swift in Sources */,
 				2A74CE5023E9C1DA00E88593 /* AppDelegate.swift in Sources */,
 				2A74CE5223E9C1DA00E88593 /* SceneDelegate.swift in Sources */,
