@@ -16,11 +16,5 @@
 //    var workBreakFlag: Int = 1 // 1 == work, 0 == break
 //    var startStopFlag: Int = 1 // 1 == stop, 0 == start
 //
-//    let blueView: UIView = UIView(frame: CGRect(x: UIScreen.main.bounds.size.width/2-100, y: 60, width: 200, height: 200))
-//    let greenVIew: UIView = UIView(frame: CGRect(x: UIScreen.main.bounds.size.width/2-100, y: 60, width: 200, height: 200))
-//    .view.addSubview(blueView)
-//    self.view.addSubview(greenView)
 //
-//    let blueGradientLayer: CAGradientLayer = CAGradientLayer()
-//    let greenGradientLayer: CAGradientLayer = CAGradientLayer()
 //}

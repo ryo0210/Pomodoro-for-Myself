@@ -29,7 +29,6 @@
 		2A315C3923EBE6C10088D8FD /* Montserrat-SemiBold.otf in Resources */ = {isa = PBXBuildFile; fileRef = 2A315C2723EBE6C10088D8FD /* Montserrat-SemiBold.otf */; };
 		2A315C3F23ED59C00088D8FD /* GetData.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2A315C3E23ED59C00088D8FD /* GetData.swift */; };
 		2A315C4123ED65680088D8FD /* Data.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2A315C4023ED65680088D8FD /* Data.swift */; };
-		2A315C4323ED9F650088D8FD /* GetColor.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2A315C4223ED9F650088D8FD /* GetColor.swift */; };
 		2A74CE5023E9C1DA00E88593 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2A74CE4F23E9C1DA00E88593 /* AppDelegate.swift */; };
 		2A74CE5223E9C1DA00E88593 /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2A74CE5123E9C1DA00E88593 /* SceneDelegate.swift */; };
 		2A74CE5423E9C1DA00E88593 /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2A74CE5323E9C1DA00E88593 /* ViewController.swift */; };
@@ -64,7 +63,6 @@
 		2A315C2723EBE6C10088D8FD /* Montserrat-SemiBold.otf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "Montserrat-SemiBold.otf"; sourceTree = "<group>"; };
 		2A315C3E23ED59C00088D8FD /* GetData.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GetData.swift; sourceTree = "<group>"; };
 		2A315C4023ED65680088D8FD /* Data.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Data.swift; sourceTree = "<group>"; };
-		2A315C4223ED9F650088D8FD /* GetColor.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GetColor.swift; sourceTree = "<group>"; };
 		2A74CE4C23E9C1DA00E88593 /* Pomodoro for Myself.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "Pomodoro for Myself.app"; sourceTree = BUILT_PRODUCTS_DIR; };
 		2A74CE4F23E9C1DA00E88593 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		2A74CE5123E9C1DA00E88593 /* SceneDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SceneDelegate.swift; sourceTree = "<group>"; };
@@ -120,7 +118,6 @@
 			children = (
 				2A315C3E23ED59C00088D8FD /* GetData.swift */,
 				2A315C4023ED65680088D8FD /* Data.swift */,
-				2A315C4223ED9F650088D8FD /* GetColor.swift */,
 			);
 			path = Models;
 			sourceTree = "<group>";
@@ -341,7 +338,6 @@
 			files = (
 				2A315C3F23ED59C00088D8FD /* GetData.swift in Sources */,
 				2A315C4123ED65680088D8FD /* Data.swift in Sources */,
-				2A315C4323ED9F650088D8FD /* GetColor.swift in Sources */,
 				2A74CE5423E9C1DA00E88593 /* ViewController.swift in Sources */,
 				2A74CE5023E9C1DA00E88593 /* AppDelegate.swift in Sources */,
 				2A74CE5223E9C1DA00E88593 /* SceneDelegate.swift in Sources */,

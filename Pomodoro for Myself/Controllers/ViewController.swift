@@ -25,7 +25,7 @@ class ViewController: UIViewController {
     
     var player: AVAudioPlayer!
     var timer = Timer()
-    
+
     var workTime = 5 // 25minute -> 1500seconds
     var breakTime = 3 // 5minute -> 300seconds
     var secondsPased = 0 // 経過時間
@@ -33,14 +33,15 @@ class ViewController: UIViewController {
     var workBreakFlag = 1 // 0 == work, 1 == break
     var startStopFlag = 0 // 0 == stop, 1 == play
     
+    var getData = GetData()
+    
     // 最初に画面を読み込んだ時の処理
     override func viewDidLoad() {
         super.viewDidLoad()
-        print(workBreakFlag)
         countResetButton.layer.borderWidth = 2
         countResetButton.layer.borderColor = #colorLiteral(red: 1, green: 1, blue: 1, alpha: 1)
         startStopButton.setTitle("START", for: .normal) // bottonTitle
-        
+
         blueGradientLayer.startPoint = CGPoint.init(x: 0, y: 0)
         blueGradientLayer.endPoint = CGPoint.init(x: 1, y:1)
         greenGradientLayer.startPoint = CGPoint.init(x: 0, y: 0)
@@ -59,19 +60,19 @@ class ViewController: UIViewController {
         blueView.layer.insertSublayer(blueGradientLayer, at:0)
         self.view.layer.insertSublayer(blueGradientLayer, at:0)
         
+//        let jobTime = getData.setData()
+//        workBreakLabel.text = jobTime.jobName
+//        timeDisplay.text = jobTime.timeString
         displayinit()
     }
     
     //再生/停止ボタンを押した時の処理
     @IBAction func startStopPressed(_ sender: UIButton) {
-        if startStopFlag == 0 {
-            timeStart()
-        } else {
-            timeStop()
-        }
+        timePressed()
+        displayinit()
     }
     
-    // 画面の初期化
+    //画面の初期化
     func displayinit() {
         if workBreakFlag == 0 {
             workBreakFlag = 1
@@ -86,47 +87,32 @@ class ViewController: UIViewController {
             self.view.layer.insertSublayer(greenGradientLayer, at:0)
         }
         secondsPased = 0
-        timeDisplay.text = changeSeconds(getTime: getTime, secondsPased: secondsPased)
+        timeDisplay.text = getData.changeSeconds(getTime: getTime, secondsPased: secondsPased)
         progressCircle.value = 0.0
     }
-    
-    // startボタンをタップした時の関数
-    func timeStart() {
-        startStopFlag = 1
-        startStopButton.setTitle("STOP", for: .normal)
-        timer = Timer.scheduledTimer(timeInterval: 1.0, target: self, selector: #selector(updateTimer), userInfo: nil, repeats: true)
+
+    // startStopボタンをタップした時の関数
+    func timePressed() {
+        if startStopFlag == 0 {
+            startStopFlag = 1
+            startStopButton.setTitle("STOP", for: .normal)
+            timer = Timer.scheduledTimer(timeInterval: 1.0, target: self, selector: #selector(updateTimer), userInfo: nil, repeats: true)
+        } else {
+            startStopFlag = 0
+            startStopButton.setTitle("START", for: .normal)
+            timer.invalidate()
+        }
     }
-    
-    // stopボタンをタップした時の関数
-    func timeStop() {
-        startStopFlag = 0
-        startStopButton.setTitle("START", for: .normal)
-        timer.invalidate()
-    }
-    
-    // 経過時間を更新する関数
+
+    //経過時間を更新する関数
     @objc func updateTimer() {
         if secondsPased < getTime {
             secondsPased += 1
-            timeDisplay.text = changeSeconds(getTime: getTime, secondsPased: secondsPased)
+            timeDisplay.text = getData.changeSeconds(getTime: getTime, secondsPased: secondsPased)
             progressCircle.value = CGFloat((Float(secondsPased) / Float(getTime) * 100 ))
         } else {
-            playSound()
+            getData.playSound()
             displayinit()
         }
-    }
-    
-    // 音を鳴らす関数
-    func playSound() {
-        let url = Bundle.main.url(forResource: "callbell2", withExtension: "mp3")
-        player = try! AVAudioPlayer(contentsOf: url!)
-        player.play()
-    }
-    
-    // 経過時間を表示形式に変換する関数
-    func changeSeconds(getTime: Int, secondsPased: Int)  -> String {
-        let m = (getTime - secondsPased) / 60
-        let s = (getTime - secondsPased) % 60
-        return String(format: "%02d:%02d", m, s)
     }
 }
