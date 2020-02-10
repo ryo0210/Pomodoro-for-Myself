@@ -29,6 +29,8 @@
 		2A315C3923EBE6C10088D8FD /* Montserrat-SemiBold.otf in Resources */ = {isa = PBXBuildFile; fileRef = 2A315C2723EBE6C10088D8FD /* Montserrat-SemiBold.otf */; };
 		2A315C3F23ED59C00088D8FD /* GetData.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2A315C3E23ED59C00088D8FD /* GetData.swift */; };
 		2A315C4123ED65680088D8FD /* Data.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2A315C4023ED65680088D8FD /* Data.swift */; };
+		2A59813323F06D030027E426 /* 􀊄.textClipping in Resources */ = {isa = PBXBuildFile; fileRef = 2A59813223F06D030027E426 /* 􀊄.textClipping */; };
+		2A59813923F1AADC0027E426 /* SettingTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2A59813823F1AADC0027E426 /* SettingTableViewController.swift */; };
 		2A74CE5023E9C1DA00E88593 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2A74CE4F23E9C1DA00E88593 /* AppDelegate.swift */; };
 		2A74CE5223E9C1DA00E88593 /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2A74CE5123E9C1DA00E88593 /* SceneDelegate.swift */; };
 		2A74CE5423E9C1DA00E88593 /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2A74CE5323E9C1DA00E88593 /* ViewController.swift */; };
@@ -63,6 +65,8 @@
 		2A315C2723EBE6C10088D8FD /* Montserrat-SemiBold.otf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "Montserrat-SemiBold.otf"; sourceTree = "<group>"; };
 		2A315C3E23ED59C00088D8FD /* GetData.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GetData.swift; sourceTree = "<group>"; };
 		2A315C4023ED65680088D8FD /* Data.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Data.swift; sourceTree = "<group>"; };
+		2A59813223F06D030027E426 /* 􀊄.textClipping */ = {isa = PBXFileReference; lastKnownFileType = file.bplist; path = "􀊄.textClipping"; sourceTree = "<group>"; };
+		2A59813823F1AADC0027E426 /* SettingTableViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SettingTableViewController.swift; sourceTree = "<group>"; };
 		2A74CE4C23E9C1DA00E88593 /* Pomodoro for Myself.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "Pomodoro for Myself.app"; sourceTree = BUILT_PRODUCTS_DIR; };
 		2A74CE4F23E9C1DA00E88593 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		2A74CE5123E9C1DA00E88593 /* SceneDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SceneDelegate.swift; sourceTree = "<group>"; };
@@ -126,6 +130,7 @@
 			isa = PBXGroup;
 			children = (
 				2A74CE5323E9C1DA00E88593 /* ViewController.swift */,
+				2A59813823F1AADC0027E426 /* SettingTableViewController.swift */,
 			);
 			path = Controllers;
 			sourceTree = "<group>";
@@ -147,6 +152,15 @@
 			);
 			path = Sound;
 			sourceTree = "<group>";
+		};
+		2A59813123F06D030027E426 /* Image */ = {
+			isa = PBXGroup;
+			children = (
+				2A59813223F06D030027E426 /* 􀊄.textClipping */,
+			);
+			name = Image;
+			path = "Pomodoro for Myself/Image";
+			sourceTree = SOURCE_ROOT;
 		};
 		2A74CE4323E9C1D900E88593 = {
 			isa = PBXGroup;
@@ -171,6 +185,7 @@
 		2A74CE4E23E9C1DA00E88593 /* Pomodoro for Myself */ = {
 			isa = PBXGroup;
 			children = (
+				2A59813123F06D030027E426 /* Image */,
 				2A74CE4F23E9C1DA00E88593 /* AppDelegate.swift */,
 				2A74CE5123E9C1DA00E88593 /* SceneDelegate.swift */,
 				2A315C3A23ED4F400088D8FD /* Models */,
@@ -273,6 +288,7 @@
 				2A315C3023EBE6C10088D8FD /* Montserrat-Regular.otf in Resources */,
 				2A315C3723EBE6C10088D8FD /* MontserratAlternates-SemiBold.otf in Resources */,
 				2A315C3123EBE6C10088D8FD /* Montserrat-Thin.otf in Resources */,
+				2A59813323F06D030027E426 /* 􀊄.textClipping in Resources */,
 				2A315C2B23EBE6C10088D8FD /* MontserratAlternates-Thin.otf in Resources */,
 				2A315C1223EB0F0A0088D8FD /* callendbell.mp3 in Resources */,
 				2A315C3623EBE6C10088D8FD /* Montserrat-ExtraLight.otf in Resources */,
@@ -336,6 +352,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				2A59813923F1AADC0027E426 /* SettingTableViewController.swift in Sources */,
 				2A315C3F23ED59C00088D8FD /* GetData.swift in Sources */,
 				2A315C4123ED65680088D8FD /* Data.swift in Sources */,
 				2A74CE5423E9C1DA00E88593 /* ViewController.swift in Sources */,

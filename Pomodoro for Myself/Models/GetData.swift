@@ -43,29 +43,4 @@ struct GetData {
         player = try! AVAudioPlayer(contentsOf: url!)
         player.play()
     }
-    
-    // 画面の初期化
-    //mutating func setData(workBreakFlag: Int, breakTime: Int, workTime: Int) -> (jobName: String, timeString: String)  {
-//    mutating func setData() -> (jobName: String, timeString: String)  {
-//        if workBreakFlag == 0 {
-//            self.workBreakFlag = 1
-//            //vc.workBreakLabel.text = "BREAK"
-//            jobName = "BREAK"
-//            getTime = breakTime
-//            //ViewControllerのViewレイヤーにグラデーションレイヤーを挿入する
-//            //self.view.layer.insertSublayer(blueGradientLayer, at:0)
-//
-//        } else {
-//            self.workBreakFlag = 0
-//            //vc.workBreakLabel.text = "WORK"
-//            jobName = "WORK"
-//            getTime = workTime
-//            //self.view.layer.insertSublayer(greenGradientLayer, at:0)
-//        }
-//        secondsPased = 0
-//        //timeDisplay.text = changeSeconds(getTime: getTime, secondsPased: secondsPased)
-//        timeString = changeSeconds(getTime: getTime, secondsPased: secondsPased)
-//        vc.progressCircle.value = 0.0
-//        return (jobName, timeString)
-//    }
 }
