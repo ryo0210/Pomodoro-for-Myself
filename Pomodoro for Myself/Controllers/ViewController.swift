@@ -12,11 +12,6 @@ import MBCircularProgressBar
 
 class ViewController: UIViewController {
 
-    let blueView = UIView(frame: CGRect(x: UIScreen.main.bounds.size.width/2-100, y: 60, width: 200, height: 200))
-    let greenView = UIView(frame: CGRect(x: UIScreen.main.bounds.size.width/2-100, y: 60, width: 200, height: 200))
-    let blueGradientLayer = CAGradientLayer()
-    let greenGradientLayer = CAGradientLayer()
-    
     @IBOutlet weak var progressCircle: MBCircularProgressBarView!
     @IBOutlet weak var timeDisplay: UILabel!
     @IBOutlet weak var startStopButton: UIButton!
@@ -28,50 +23,39 @@ class ViewController: UIViewController {
     
     var player: AVAudioPlayer!
     var timer = Timer()
-
-    var workTime = 5 // 25minute -> 1500seconds
-    var breakTime = 3 // 5minute -> 300seconds
-    var longBreak = 4
-    var secondsPased = 0 // 経過時間
-    var getTime = 0 // get workTime or breakTime
-    var workBreakFlag = 1 // 0 == work, 1 == break
-    var startStopFlag = 0 // 0 == stop, 1 == play
-    var intervalCount = 0
-    var todayCount = 0
-    var totalCount = 0
-    let playImage = UIImage(systemName: "play.fill")
-    let pauseImage = UIImage(systemName: "pause.fill")
-    let imageState = UIControl.State.normal
-    
     
     var getData = GetData()
     
     // 最初に画面を読み込んだ時の処理
     override func viewDidLoad() {
         super.viewDidLoad()
-        startStopButton.setImage(playImage, for: imageState)
+        startStopButton.setImage(getData.playImage, for: getData.imageState)
 
         // 背景色の定義-------------------
-        blueGradientLayer.startPoint = CGPoint.init(x: 0, y: 0)
-        blueGradientLayer.endPoint = CGPoint.init(x: 1, y:1)
-        greenGradientLayer.startPoint = CGPoint.init(x: 0, y: 0)
-        greenGradientLayer.endPoint = CGPoint.init(x: 1, y:1)
+        getData.blueGradientLayer.startPoint = CGPoint.init(x: 0, y: 0)
+        getData.blueGradientLayer.endPoint = CGPoint.init(x: 1, y:1)
+        getData.greenGradientLayer.startPoint = CGPoint.init(x: 0, y: 0)
+        getData.greenGradientLayer.endPoint = CGPoint.init(x: 1, y:1)
         // グラデーションレイヤーの領域の設定
-        blueGradientLayer.frame = CGRect(x: 0, y: 0, width: 375, height: 667)
-        greenGradientLayer.frame = CGRect(x: 0, y: 0, width: 375, height: 667)
+        getData.blueGradientLayer.frame = CGRect(x: 0, y: 0, width: 375, height: 667)
+        getData.greenGradientLayer.frame = CGRect(x: 0, y: 0, width: 375, height: 667)
         // 青のグラデーションカラーの設定
-        blueGradientLayer.colors = [UIColor(red: 0.2251946628, green: 0.8290438056, blue: 1, alpha: 1).cgColor,
+        getData.blueGradientLayer.colors = [UIColor(red: 0.2251946628, green: 0.8290438056, blue: 1, alpha: 1).cgColor,
                                     UIColor(red: 0.1660510302, green: 0.5308232307, blue: 0.8241160512, alpha: 1).cgColor]
         // 緑のグラデーションカラーの設定
-        greenGradientLayer.colors = [UIColor(red: 0.4861801267, green: 0.9166658521, blue: 0.327701956, alpha: 1).cgColor,
+        getData.greenGradientLayer.colors = [UIColor(red: 0.4861801267, green: 0.9166658521, blue: 0.327701956, alpha: 1).cgColor,
                                      UIColor(red: 0.007991780527, green: 0.7261779904, blue: 0.3112581074, alpha: 1).cgColor]
         // ビューにグラデーションレイヤーを追加
-        greenView.layer.insertSublayer(greenGradientLayer, at:0)
-        blueView.layer.insertSublayer(blueGradientLayer, at:0)
-        self.view.layer.insertSublayer(blueGradientLayer, at:0)
+        getData.greenView.layer.insertSublayer(getData.greenGradientLayer, at:0)
+        getData.blueView.layer.insertSublayer(getData.blueGradientLayer, at:0)
+        self.view.layer.insertSublayer(getData.blueGradientLayer, at:0)
         // ----------------------------
         
+        getData.workBreakFlag = 1
         displayinit()
+        intervalCounter.text = "\(String(getData.workCount)) / \(getData.intervalOften)"
+        totalCounter.text = String(getData.todayCount)
+        
     }
     
     //再生/停止ボタンを押した時の処理
@@ -79,72 +63,87 @@ class ViewController: UIViewController {
         timePressed()
     }
     
+    // countResetButtonを押した時の処理
     @IBAction func countResetPressed(_ sender: UIButton) {
         countReset()
     }
     
     @IBAction func settingPressed(_ sender: UIButton) {
-        let secondVC = SecondViewController()
-        
-        self.present(secondVC, animated: true, completion: nil)
+        self.performSegue(withIdentifier: "reuseIdentifier", sender: self)
     }
     
-    
-    
-    
+    // メイン画面から設定画面に遷移するときの処理を追加
+    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
+        // メイン画面から設定画面に遷移するセグエが reuseIdentifier の場合
+        if segue.identifier == "reuseIdentifier" {
+            // 戻るときの処理を設定画面で行うための設定
+            segue.destination.presentationController?.delegate = (segue.destination as! UIAdaptivePresentationControllerDelegate)
+            // 設定画面に遷移する時に、getDataの値を返す
+            let settingVC = segue.destination as! SettingTableViewController
+            settingVC.getData.workTime = getData.workTime
+            settingVC.getData.breakTime = getData.breakTime
+            settingVC.getData.longBreakTime = getData.longBreakTime
+            settingVC.getData.intervalOften = getData.intervalOften
+        }
+    }
     
     //画面の初期化
     func displayinit() {
-        if workBreakFlag == 0 {
-            workBreakFlag = 1
+        if getData.workBreakFlag == 0 { // breakの時
+            getData.workBreakFlag = 1
             workBreakLabel.text = "BREAK"
-            if intervalCount < 4 {
-                getTime = breakTime
+            // 4回workしたら長時間休憩休憩をする
+            if getData.workCount < 4 {
+                getData.getTime = getData.breakTime
             } else {
-                getTime = longBreak
+                getData.getTime = getData.longBreakTime
             }
             //ViewControllerのViewレイヤーにグラデーションレイヤーを挿入する
-            self.view.layer.insertSublayer(blueGradientLayer, at:0)
+            self.view.layer.insertSublayer(getData.blueGradientLayer, at:0)
         } else {
-            workBreakFlag = 0
+            getData.workBreakFlag = 0
             workBreakLabel.text = "WORK"
-            getTime = workTime
-            self.view.layer.insertSublayer(greenGradientLayer, at:0)
+            getData.getTime = getData.workTime
+            self.view.layer.insertSublayer(getData.greenGradientLayer, at:0)
         }
-        secondsPased = 0
-        timeDisplay.text = getData.changeSeconds(getTime: getTime, secondsPased: secondsPased)
+        getData.secondsPased = 0
+        timeDisplay.text = getData.changeSeconds(getTime: getData.getTime, secondsPased: getData.secondsPased)
         progressCircle.value = 0.0
     }
 
     // startStopボタンをタップした時の関数
     func timePressed() {
-        if startStopFlag == 0 {
-            startStopFlag = 1
-            startStopButton.setImage(pauseImage, for: imageState)
+        if getData.startStopFlag == 0 {
+            getData.startStopFlag = 1
+            startStopButton.setImage(getData.pauseImage, for: getData.imageState)
             timer = Timer.scheduledTimer(timeInterval: 1.0, target: self, selector: #selector(updateTimer), userInfo: nil, repeats: true)
         } else {
-            startStopFlag = 0
-            startStopButton.setImage(playImage, for: imageState)
+            getData.startStopFlag = 0
+            startStopButton.setImage(getData.playImage, for: getData.imageState)
             timer.invalidate()
         }
     }
 
     //経過時間を更新する関数
     @objc func updateTimer() {
-        if secondsPased < getTime { // タイマーを1秒毎に呼び出す
-            secondsPased += 1
-            timeDisplay.text = getData.changeSeconds(getTime: getTime, secondsPased: secondsPased)
-            progressCircle.value = CGFloat((Float(secondsPased) / Float(getTime) * 100 ))
-        } else { // 時間が終了した時の処理
-            if workBreakFlag == 0 { // workが終了した時の処理
-                intervalCount += 1
-                todayCount += 1
-                totalCount += 1
-                intervalCounter.text = "\(String(intervalCount)) / 4"
-                totalCounter.text = String(todayCount)
-            } else if workBreakFlag == 1 && intervalCount == 4 { // breakが終了し、かつ、intervalCountが4の時
-                intervalCount = 0
-                intervalCounter.text = "\(String(intervalCount)) / 4"
+        // タイマーを1秒毎に呼び出す
+        if getData.secondsPased < getData.getTime {
+            getData.secondsPased += 1
+            timeDisplay.text = getData.changeSeconds(getTime: getData.getTime, secondsPased: getData.secondsPased)
+            progressCircle.value = CGFloat((Float(getData.secondsPased) / Float(getData.getTime) * 100 ))
+        // 時間が終了した時の処理
+        } else {
+            // workが終了した時の処理
+            if getData.workBreakFlag == 0 {
+                getData.workCount += 1
+                getData.todayCount += 1
+                getData.totalCount += 1
+                intervalCounter.text = "\(String(getData.workCount)) / \(getData.intervalOften)"
+                totalCounter.text = String(getData.todayCount)
+            // breakが終了し、かつ、intervalCountが4の時
+            } else if getData.workBreakFlag == 1 && getData.workCount >= getData.intervalOften {
+                getData.workCount = 0
+                intervalCounter.text = "\(String(getData.workCount)) / \(getData.intervalOften)"
             }
             getData.playSound()
             displayinit()
@@ -153,10 +152,11 @@ class ViewController: UIViewController {
     
     // work && stopの状態にさせる
     func countReset() {
-        startStopFlag = 1 // startStopFlag = 1をしてstart状態にさせてからtimePressed()を呼び出し、stop状態にさせる。
+        getData.startStopFlag = 1 // startStopFlag = 1をしてstart状態にさせてからtimePressed()を呼び出し、stop状態にさせる。
         timePressed()
-        workBreakFlag = 1 // workBreakFlag = 1をしbreak状態にしてからdisplayinit()を呼び出し、work状態にさせる。
+        getData.workBreakFlag = 1 // workBreakFlag = 1をしbreak状態にしてからdisplayinit()を呼び出し、work状態にさせる。
         displayinit()
-        intervalCount = 0
+        getData.workCount = 0
+        intervalCounter.text = "\(String(getData.workCount)) / \(getData.intervalOften)"
     }
 }

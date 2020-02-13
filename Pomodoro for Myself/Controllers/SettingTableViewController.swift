@@ -8,40 +8,103 @@
 
 import UIKit
 
-class SettingTableViewController: UITableViewController {
-
+class SettingTableViewController: UITableViewController, UIAdaptivePresentationControllerDelegate {
+    @IBOutlet weak var workTimeLabel: UILabel!
+    @IBOutlet weak var breakTimeLabel: UILabel!
+    @IBOutlet weak var intervalLabel: UILabel!
+    @IBOutlet weak var longBreakTimeLabel: UILabel!
+    
+    @IBOutlet weak var workStepper: UIStepper!
+    @IBOutlet weak var breakStepper: UIStepper!
+    @IBOutlet weak var intervalStepper: UIStepper!
+    @IBOutlet weak var longBreakStepper: UIStepper!
+    
+    
+    var getData = GetData()
+    
+    var timePicker: UIDatePicker = UIDatePicker()
+    
     override func viewDidLoad() {
         super.viewDidLoad()
-
-        // Uncomment the following line to preserve selection between presentations
-        // self.clearsSelectionOnViewWillAppear = false
-
-        // Uncomment the following line to display an Edit button in the navigation bar for this view controller.
-        // self.navigationItem.rightBarButtonItem = self.editButtonItem
+        workStepper.value = Double(getData.workTime)
+        workTimeLabel.text = String(format: "%.0fmin", workStepper.value)
+        breakStepper.value = Double(getData.breakTime)
+        breakTimeLabel.text = String(format: "%.0fmin", breakStepper.value)
+        intervalStepper.value = Double(getData.longBreakTime)
+        intervalLabel.text = String(format: "%.0f回", intervalStepper.value)
+        longBreakStepper.value = Double(getData.longBreakTime)
+        longBreakTimeLabel.text = String(format: "%.0fmin", longBreakStepper.value)
     }
+    
+    @IBAction func workTimeSteperPressed(_ sender: UIStepper) {
+        workTimeLabel.text = String(format: "%.0fmin", sender.value)
+        getData.workTime = Int(sender.value)
+    }
+    
+    @IBAction func breakTimeSteperPressed(_ sender: UIStepper) {
+        breakTimeLabel.text = String(format: "%.0fmin", sender.value)
+        getData.breakTime = Int(sender.value)
+    }
+    
+    @IBAction func intervalSteperPressed(_ sender: UIStepper) {
+        intervalLabel.text = String(format: "%.0f回", sender.value)
+        getData.intervalOften = Int(sender.value)
+    }
+    
+    @IBAction func longBreakTimeSteperPressed(_ sender: UIStepper) {
+        longBreakTimeLabel.text = String(format: "%.0fmin", sender.value)
+        getData.longBreakTime = Int(sender.value)
+    }
+    
+    
+    
+    // メイン画面に戻る画面遷移が開始する時に呼ばれます。
+    func presentationControllerDidDismiss(_ presentationController: UIPresentationController) {
+        // メイン画面の ViewController を取得。
+        let mainVC = presentationController.presentingViewController as! ViewController
+        // メイン画面に値を返す。
+        mainVC.getData.workTime = getData.workTime
+        mainVC.getData.breakTime = getData.breakTime
+        mainVC.getData.intervalOften = getData.intervalOften
+        mainVC.getData.longBreakTime = getData.longBreakTime
+//        mainVC.loadView()
+//        mainVC.viewDidLoad()
+    }
+    
+    
+    
+    
+    
+    
+   
+    
 
     // MARK: - Table view data source
     
     //セクションの数
-    override func numberOfSections(in tableView: UITableView) -> Int {
-        // #warning Incomplete implementation, return the number of sections
-        return 2
-    }
-
-    // セルの数
-    override func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        // #warning Incomplete implementation, return the number of rows
-        return 0
-    }
-
+//    override func numberOfSections(in tableView: UITableView) -> Int {
+//        // #warning Incomplete implementation, return the number of sections
+//        return 2
+//    }
+//
+//    // セルの数
+//    override func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
+//        // #warning Incomplete implementation, return the number of rows
+//        return 3
+//    }
+//
+//
+//    override func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
+//        let cell = tableView.dequeueReusableCell(withIdentifier: "reuseIdentifier", for: indexPath)
+//
+//        // Configure the cell...
+//        //cell.textLabel?.text = array[indexPath.row]// 新しく付け足した
+//
+//
+//        return cell
+//    }
+//
     
-    override func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
-        let cell = tableView.dequeueReusableCell(withIdentifier: "reuseIdentifier", for: indexPath)
-
-        // Configure the cell...
-
-        return cell
-    }
     
 
     /*

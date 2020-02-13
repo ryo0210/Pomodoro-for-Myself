@@ -28,7 +28,6 @@
 		2A315C3823EBE6C10088D8FD /* Montserrat-Medium.otf in Resources */ = {isa = PBXBuildFile; fileRef = 2A315C2623EBE6C10088D8FD /* Montserrat-Medium.otf */; };
 		2A315C3923EBE6C10088D8FD /* Montserrat-SemiBold.otf in Resources */ = {isa = PBXBuildFile; fileRef = 2A315C2723EBE6C10088D8FD /* Montserrat-SemiBold.otf */; };
 		2A315C3F23ED59C00088D8FD /* GetData.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2A315C3E23ED59C00088D8FD /* GetData.swift */; };
-		2A315C4123ED65680088D8FD /* Data.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2A315C4023ED65680088D8FD /* Data.swift */; };
 		2A59813323F06D030027E426 /* 􀊄.textClipping in Resources */ = {isa = PBXBuildFile; fileRef = 2A59813223F06D030027E426 /* 􀊄.textClipping */; };
 		2A59813923F1AADC0027E426 /* SettingTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2A59813823F1AADC0027E426 /* SettingTableViewController.swift */; };
 		2A74CE5023E9C1DA00E88593 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2A74CE4F23E9C1DA00E88593 /* AppDelegate.swift */; };
@@ -64,7 +63,6 @@
 		2A315C2623EBE6C10088D8FD /* Montserrat-Medium.otf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "Montserrat-Medium.otf"; sourceTree = "<group>"; };
 		2A315C2723EBE6C10088D8FD /* Montserrat-SemiBold.otf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "Montserrat-SemiBold.otf"; sourceTree = "<group>"; };
 		2A315C3E23ED59C00088D8FD /* GetData.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GetData.swift; sourceTree = "<group>"; };
-		2A315C4023ED65680088D8FD /* Data.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Data.swift; sourceTree = "<group>"; };
 		2A59813223F06D030027E426 /* 􀊄.textClipping */ = {isa = PBXFileReference; lastKnownFileType = file.bplist; path = "􀊄.textClipping"; sourceTree = "<group>"; };
 		2A59813823F1AADC0027E426 /* SettingTableViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SettingTableViewController.swift; sourceTree = "<group>"; };
 		2A74CE4C23E9C1DA00E88593 /* Pomodoro for Myself.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "Pomodoro for Myself.app"; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -121,7 +119,6 @@
 			isa = PBXGroup;
 			children = (
 				2A315C3E23ED59C00088D8FD /* GetData.swift */,
-				2A315C4023ED65680088D8FD /* Data.swift */,
 			);
 			path = Models;
 			sourceTree = "<group>";
@@ -354,7 +351,6 @@
 			files = (
 				2A59813923F1AADC0027E426 /* SettingTableViewController.swift in Sources */,
 				2A315C3F23ED59C00088D8FD /* GetData.swift in Sources */,
-				2A315C4123ED65680088D8FD /* Data.swift in Sources */,
 				2A74CE5423E9C1DA00E88593 /* ViewController.swift in Sources */,
 				2A74CE5023E9C1DA00E88593 /* AppDelegate.swift in Sources */,
 				2A74CE5223E9C1DA00E88593 /* SceneDelegate.swift in Sources */,

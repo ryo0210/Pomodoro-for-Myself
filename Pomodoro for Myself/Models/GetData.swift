@@ -16,19 +16,29 @@ struct GetData {
 //    public weak var timeDisplay: UILabel!
 //    public weak var workBreakLabel: UILabel!
     
-    public weak var vc: ViewController!
-    
     var player: AVAudioPlayer!
     var timer = Timer()
     
-    public var workTime: Int = 5 // 25minute -> 1500seconds
-    public var breakTime: Int = 3 // 5minute -> 300seconds
-    public var secondsPased: Int = 0 //
-    public var getTime: Int  = 0 // get workTime or breakTime
-    public var workBreakFlag: Int = 1 // 1 == work, 0 == break
-    public var startStopFlag: Int = 1 // 1 == stop, 0 == start
-    public var jobName: String = "BREAK"
-    public var timeString: String = "25:00"
+    var workTime: Int = 5 // 25minute -> 1500seconds
+    var breakTime: Int = 3// 5minute -> 300seconds
+    var longBreakTime: Int = 4
+    var intervalOften: Int = 4 // どのくらいの頻度で長時間休憩を行うか
+    var workCount: Int = 0 // 何回勉強したか
+    var secondsPased: Int = 0 //　経過時間
+    var getTime: Int  = 0 // get workTime or breakTime
+    var workBreakFlag: Int = 1 // 1 == work, 0 == break
+    var startStopFlag: Int = 0 // 1 == stop, 0 == start
+    var todayCount: Int = 0
+    var totalCount: Int = 0
+
+    let blueView = UIView(frame: CGRect(x: UIScreen.main.bounds.size.width/2-100, y: 60, width: 200, height: 200))
+    let greenView = UIView(frame: CGRect(x: UIScreen.main.bounds.size.width/2-100, y: 60, width: 200, height: 200))
+    let blueGradientLayer = CAGradientLayer()
+    let greenGradientLayer = CAGradientLayer()
+    
+    let playImage = UIImage(systemName: "play.fill")
+    let pauseImage = UIImage(systemName: "pause.fill")
+    let imageState = UIControl.State.normal
     
     // 経過時間を表示形式に変換する関数
     func changeSeconds(getTime: Int, secondsPased: Int)  -> String {
