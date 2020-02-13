@@ -138,7 +138,7 @@ class ViewController: UIViewController {
             // workが終了した時の処理
             if getData.workBreakFlag == 0 {
                 getData.todayCount += 1
-                // getData.totalCount += 1 未実装
+                // getData.totalCount += 1 //未実装
                 // 長時間休憩がオンの時
                 if getData.intervalFlag == 1 {
                     getData.workCount += 1

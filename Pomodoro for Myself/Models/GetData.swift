@@ -23,7 +23,7 @@ struct GetData {
     var breakTime: Int = 3// 5minute -> 300seconds
     var longBreakTime: Int = 4
     var intervalOften: Int = 4 // どのくらいの頻度で長時間休憩を行うか
-    var workCount: Int = 0 // 何回勉強したか
+    var workCount: Int = 0 // 何回workしたか
     var secondsPased: Int = 0 //　経過時間
     var getTime: Int  = 0 // get workTime or breakTime
     var workBreakFlag: Int = 1 // 1 == work, 0 == break
