@@ -27,9 +27,11 @@ struct GetData {
     var secondsPased: Int = 0 //　経過時間
     var getTime: Int  = 0 // get workTime or breakTime
     var workBreakFlag: Int = 1 // 1 == work, 0 == break
+    var intervalFlag: Int = 1 // 1 == on, 0 == off
+    
     var startStopFlag: Int = 0 // 1 == stop, 0 == start
     var todayCount: Int = 0
-    var totalCount: Int = 0
+    // var totalCount: Int = 0 未実装
 
     let blueView = UIView(frame: CGRect(x: UIScreen.main.bounds.size.width/2-100, y: 60, width: 200, height: 200))
     let greenView = UIView(frame: CGRect(x: UIScreen.main.bounds.size.width/2-100, y: 60, width: 200, height: 200))

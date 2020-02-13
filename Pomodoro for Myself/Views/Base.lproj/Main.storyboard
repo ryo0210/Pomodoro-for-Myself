@@ -271,6 +271,9 @@
                                                 <switch opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="750" verticalHuggingPriority="750" contentHorizontalAlignment="center" contentVerticalAlignment="center" on="YES" id="S26-g5-t3c">
                                                     <rect key="frame" x="310" y="4.5" width="51" height="31"/>
                                                     <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                                    <connections>
+                                                        <action selector="intervalSwitchPressed:" destination="pXk-XC-jXW" eventType="valueChanged" id="Fyt-oA-BDq"/>
+                                                    </connections>
                                                 </switch>
                                             </subviews>
                                         </tableViewCellContentView>
@@ -350,6 +353,7 @@
                         <outlet property="breakTimeLabel" destination="4e5-tx-Yw7" id="gKx-DG-Jtg"/>
                         <outlet property="intervalLabel" destination="8AY-lL-SKb" id="bEB-Tv-yyc"/>
                         <outlet property="intervalStepper" destination="r8g-OB-0O5" id="fky-WE-Qay"/>
+                        <outlet property="intervalSwitch" destination="S26-g5-t3c" id="s44-ci-Enh"/>
                         <outlet property="longBreakStepper" destination="9nA-8D-q8b" id="POo-Pj-ZQL"/>
                         <outlet property="longBreakTimeLabel" destination="B2b-gy-3yc" id="2Oi-CP-hka"/>
                         <outlet property="workStepper" destination="x2Y-Jv-kw0" id="mjI-7k-y92"/>

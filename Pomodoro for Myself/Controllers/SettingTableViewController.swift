@@ -19,6 +19,10 @@ class SettingTableViewController: UITableViewController, UIAdaptivePresentationC
     @IBOutlet weak var intervalStepper: UIStepper!
     @IBOutlet weak var longBreakStepper: UIStepper!
     
+    @IBOutlet weak var intervalSwitch: UISwitch!
+    
+    // UserDefaults のインスタンス
+    let userDefaults = UserDefaults.standard
     
     var getData = GetData()
     
@@ -28,12 +32,18 @@ class SettingTableViewController: UITableViewController, UIAdaptivePresentationC
         super.viewDidLoad()
         workStepper.value = Double(getData.workTime)
         workTimeLabel.text = String(format: "%.0fmin", workStepper.value)
+        
         breakStepper.value = Double(getData.breakTime)
         breakTimeLabel.text = String(format: "%.0fmin", breakStepper.value)
-        intervalStepper.value = Double(getData.longBreakTime)
+        
+        intervalStepper.value = Double(getData.intervalOften)
         intervalLabel.text = String(format: "%.0f回", intervalStepper.value)
+        
         longBreakStepper.value = Double(getData.longBreakTime)
         longBreakTimeLabel.text = String(format: "%.0fmin", longBreakStepper.value)
+        
+        let intervalSwitchBool = userDefaults.bool(forKey: "bool01")
+        intervalSwitch.setOn(intervalSwitchBool, animated: true)
     }
     
     @IBAction func workTimeSteperPressed(_ sender: UIStepper) {
@@ -57,6 +67,15 @@ class SettingTableViewController: UITableViewController, UIAdaptivePresentationC
     }
     
     
+    @IBAction func intervalSwitchPressed(_ sender: UISwitch) {
+        if sender.isOn {
+            getData.intervalFlag = 1
+        } else {
+            getData.intervalFlag = 0
+        }
+        userDefaults.set(sender.isOn, forKey: "bool01")
+    }
+    
     
     // メイン画面に戻る画面遷移が開始する時に呼ばれます。
     func presentationControllerDidDismiss(_ presentationController: UIPresentationController) {
@@ -67,8 +86,16 @@ class SettingTableViewController: UITableViewController, UIAdaptivePresentationC
         mainVC.getData.breakTime = getData.breakTime
         mainVC.getData.intervalOften = getData.intervalOften
         mainVC.getData.longBreakTime = getData.longBreakTime
+        mainVC.getData.intervalFlag = getData.intervalFlag
 //        mainVC.loadView()
 //        mainVC.viewDidLoad()
+        if getData.intervalFlag == 1 {
+            mainVC.intervalCounter.text = "\(String(getData.workCount)) / \(getData.intervalOften)"
+        // 長時間休憩がオフの時
+        } else {
+            mainVC.intervalCounter.text = "off"
+        }
+
     }
     
     

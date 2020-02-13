@@ -53,9 +53,6 @@ class ViewController: UIViewController {
         
         getData.workBreakFlag = 1
         displayinit()
-        intervalCounter.text = "\(String(getData.workCount)) / \(getData.intervalOften)"
-        totalCounter.text = String(getData.todayCount)
-        
     }
     
     //再生/停止ボタンを押した時の処理
@@ -84,22 +81,25 @@ class ViewController: UIViewController {
             settingVC.getData.breakTime = getData.breakTime
             settingVC.getData.longBreakTime = getData.longBreakTime
             settingVC.getData.intervalOften = getData.intervalOften
+            settingVC.getData.intervalFlag = getData.intervalFlag
         }
     }
     
     //画面の初期化
     func displayinit() {
-        if getData.workBreakFlag == 0 { // breakの時
+        // breakの時
+        if getData.workBreakFlag == 0 {
             getData.workBreakFlag = 1
             workBreakLabel.text = "BREAK"
             // 4回workしたら長時間休憩休憩をする
-            if getData.workCount < 4 {
-                getData.getTime = getData.breakTime
-            } else {
+            getData.getTime = getData.breakTime
+            // 長時間休憩がオンの時かつ、work数がインターバルの頻度より多い時に休憩時間を長時間休憩にする
+            if getData.intervalFlag == 1 && getData.workCount >= getData.intervalOften{
                 getData.getTime = getData.longBreakTime
             }
             //ViewControllerのViewレイヤーにグラデーションレイヤーを挿入する
             self.view.layer.insertSublayer(getData.blueGradientLayer, at:0)
+        // workの時
         } else {
             getData.workBreakFlag = 0
             workBreakLabel.text = "WORK"
@@ -113,10 +113,12 @@ class ViewController: UIViewController {
 
     // startStopボタンをタップした時の関数
     func timePressed() {
+        // スタートボタンを押した時
         if getData.startStopFlag == 0 {
             getData.startStopFlag = 1
             startStopButton.setImage(getData.pauseImage, for: getData.imageState)
             timer = Timer.scheduledTimer(timeInterval: 1.0, target: self, selector: #selector(updateTimer), userInfo: nil, repeats: true)
+        // ストップボタンを押した時
         } else {
             getData.startStopFlag = 0
             startStopButton.setImage(getData.playImage, for: getData.imageState)
@@ -135,13 +137,17 @@ class ViewController: UIViewController {
         } else {
             // workが終了した時の処理
             if getData.workBreakFlag == 0 {
-                getData.workCount += 1
                 getData.todayCount += 1
-                getData.totalCount += 1
-                intervalCounter.text = "\(String(getData.workCount)) / \(getData.intervalOften)"
+                // getData.totalCount += 1 未実装
+                // 長時間休憩がオンの時
+                if getData.intervalFlag == 1 {
+                    getData.workCount += 1
+                    intervalCounter.text = "\(String(getData.workCount)) / \(getData.intervalOften)"
+                }
                 totalCounter.text = String(getData.todayCount)
-            // breakが終了し、かつ、intervalCountが4の時
-            } else if getData.workBreakFlag == 1 && getData.workCount >= getData.intervalOften {
+            }
+            // 長時間休憩がオンの時かつ、breakが終了かつ、intervalCountが4の時
+            if getData.intervalFlag == 1 && getData.workBreakFlag == 1 && getData.workCount >= getData.intervalOften {
                 getData.workCount = 0
                 intervalCounter.text = "\(String(getData.workCount)) / \(getData.intervalOften)"
             }
