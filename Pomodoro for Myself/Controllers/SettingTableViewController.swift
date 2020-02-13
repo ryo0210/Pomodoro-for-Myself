@@ -89,6 +89,7 @@ class SettingTableViewController: UITableViewController, UIAdaptivePresentationC
         mainVC.getData.intervalFlag = getData.intervalFlag
 //        mainVC.loadView()
 //        mainVC.viewDidLoad()
+        // 長時間休憩がオンの時
         if getData.intervalFlag == 1 {
             mainVC.intervalCounter.text = "\(String(getData.workCount)) / \(getData.intervalOften)"
         // 長時間休憩がオフの時
