@@ -163,6 +163,7 @@
 			isa = PBXGroup;
 			children = (
 				2A74CE4E23E9C1DA00E88593 /* Pomodoro for Myself */,
+				2A59813123F06D030027E426 /* Image */,
 				2A315C3D23ED50BB0088D8FD /* Sound */,
 				2A315C1523EBE6360088D8FD /* Font */,
 				2A74CE4D23E9C1DA00E88593 /* Products */,
@@ -182,15 +183,14 @@
 		2A74CE4E23E9C1DA00E88593 /* Pomodoro for Myself */ = {
 			isa = PBXGroup;
 			children = (
-				2A59813123F06D030027E426 /* Image */,
 				2A74CE4F23E9C1DA00E88593 /* AppDelegate.swift */,
 				2A74CE5123E9C1DA00E88593 /* SceneDelegate.swift */,
-				2A315C3A23ED4F400088D8FD /* Models */,
-				2A315C3C23ED4F5F0088D8FD /* Views */,
-				2A315C3B23ED4F510088D8FD /* Controllers */,
 				2A74CE5823E9C1DF00E88593 /* Assets.xcassets */,
 				2A74CE5A23E9C1DF00E88593 /* LaunchScreen.storyboard */,
 				2A74CE5D23E9C1DF00E88593 /* Info.plist */,
+				2A315C3A23ED4F400088D8FD /* Models */,
+				2A315C3C23ED4F5F0088D8FD /* Views */,
+				2A315C3B23ED4F510088D8FD /* Controllers */,
 			);
 			path = "Pomodoro for Myself";
 			sourceTree = "<group>";

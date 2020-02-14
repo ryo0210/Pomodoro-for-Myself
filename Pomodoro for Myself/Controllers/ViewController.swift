@@ -163,6 +163,10 @@ class ViewController: UIViewController {
         getData.workBreakFlag = 1 // workBreakFlag = 1をしbreak状態にしてからdisplayinit()を呼び出し、work状態にさせる。
         displayinit()
         getData.workCount = 0
-        intervalCounter.text = "\(String(getData.workCount)) / \(getData.intervalOften)"
+        if getData.intervalFlag == 1 {
+            intervalCounter.text = "\(String(getData.workCount)) / \(getData.intervalOften)"
+        } else {
+            intervalCounter.text = "off"
+        }
     }
 }
