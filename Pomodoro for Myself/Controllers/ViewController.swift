@@ -7,6 +7,7 @@
 //
 
 import UIKit
+import UserNotifications
 import AVFoundation
 import MBCircularProgressBar
 
@@ -23,7 +24,7 @@ class ViewController: UIViewController {
     
     var player: AVAudioPlayer!
     var timer = Timer()
-    
+       
     var getData = GetData()
     
     // 最初に画面を読み込んだ時の処理
@@ -54,6 +55,7 @@ class ViewController: UIViewController {
         getData.workBreakFlag = 1
         displayinit()
     }
+    
     
     //再生/停止ボタンを押した時の処理
     @IBAction func startStopPressed(_ sender: UIButton) {
@@ -90,20 +92,22 @@ class ViewController: UIViewController {
         // breakの時
         if getData.workBreakFlag == 0 {
             getData.workBreakFlag = 1
-            workBreakLabel.text = "BREAK"
+            getData.doString = "BREAK"
+            workBreakLabel.text = getData.doString
             // 4回workしたら長時間休憩休憩をする
-            getData.getTime = getData.breakTime
+            getData.getTime = getData.breakTime// * 20
             // 長時間休憩がオンの時かつ、work数がインターバルの頻度より多い時に休憩時間を長時間休憩にする
             if getData.intervalFlag == 1 && getData.workCount >= getData.intervalOften{
-                getData.getTime = getData.longBreakTime
+                getData.getTime = getData.longBreakTime// * 20
             }
             //ViewControllerのViewレイヤーにグラデーションレイヤーを挿入する
             self.view.layer.insertSublayer(getData.blueGradientLayer, at:0)
         // workの時
         } else {
             getData.workBreakFlag = 0
-            workBreakLabel.text = "WORK"
-            getData.getTime = getData.workTime
+            getData.doString = "WORK"
+            workBreakLabel.text = getData.doString
+            getData.getTime = getData.workTime// * 20
             self.view.layer.insertSublayer(getData.greenGradientLayer, at:0)
         }
         getData.secondsPased = 0
@@ -117,7 +121,11 @@ class ViewController: UIViewController {
         if getData.startStopFlag == 0 {
             getData.startStopFlag = 1
             startStopButton.setImage(getData.pauseImage, for: getData.imageState)
-            timer = Timer.scheduledTimer(timeInterval: 1.0, target: self, selector: #selector(updateTimer), userInfo: nil, repeats: true)
+            timer = Timer.scheduledTimer(timeInterval: 1.0,
+                                         target: self,
+                                         selector: #selector(updateTimer),
+                                         userInfo: nil,
+                                         repeats: true)
         // ストップボタンを押した時
         } else {
             getData.startStopFlag = 0
@@ -151,8 +159,21 @@ class ViewController: UIViewController {
                 getData.workCount = 0
                 intervalCounter.text = "\(String(getData.workCount)) / \(getData.intervalOften)"
             }
-            getData.playSound()
+            //getData.playSound()
             displayinit()
+            
+            
+            let center = UNUserNotificationCenter.current()
+            center.removePendingNotificationRequests(withIdentifiers: ["Timer"])
+            let content = UNMutableNotificationContent()
+            content.title = "\(getData.doString)の時間です"
+            content.sound = UNNotificationSound.default
+            
+            //let trigger = UNTimeIntervalNotificationTrigger(timeInterval: 5, repeats: false)
+            
+            let request = UNNotificationRequest(identifier: "Timer", content: content, trigger: nil)
+            // ④ 通知の追加
+            center.add(request)
         }
     }
     

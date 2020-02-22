@@ -12,10 +12,6 @@ import AVFoundation
 
 struct GetData {
     
-//    public weak var progressCircle: MBCircularProgressBarView!
-//    public weak var timeDisplay: UILabel!
-//    public weak var workBreakLabel: UILabel!
-    
     var player: AVAudioPlayer!
     var timer = Timer()
     
@@ -26,9 +22,11 @@ struct GetData {
     var workCount: Int = 0 // 何回workしたか
     var secondsPased: Int = 0 //　経過時間
     var getTime: Int  = 0 // get workTime or breakTime
+    
+    var doString: String = "work"
+    
     var workBreakFlag: Int = 1 // 1 == work, 0 == break
     var intervalFlag: Int = 1 // 1 == on, 0 == off
-    
     var startStopFlag: Int = 0 // 1 == stop, 0 == start
     var todayCount: Int = 0
     // var totalCount: Int = 0 未実装
