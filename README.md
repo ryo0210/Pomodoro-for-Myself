@@ -14,7 +14,7 @@ udemyの勉強の復習として作ってみました。
  
 
 
-<img src="https://user-images.githubusercontent.com/43768044/75092813-ef96b500-55be-11ea-930d-958c9bc5fc15.gif" width=300px>
+![demo](https://github.com/ryo0210/Pomodoro-for-Myself.git)
 
 
                                                                                                                        
