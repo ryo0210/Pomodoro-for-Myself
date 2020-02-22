@@ -14,7 +14,6 @@ udemyの勉強の復習として作ってみました。
  
 
 
-![demo](https://github.com/ryo0210/Pomodoro-for-Myself.git)
 
 
                                                                                                                        
